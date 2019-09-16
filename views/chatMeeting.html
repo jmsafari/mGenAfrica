@@ -1,0 +1,55 @@
+<div class="col-md-12 column">
+		<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background-color:#8BC34A;border-color:#8BC34A;">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="container" style="margin-left:0px;">
+				<div class="navbar-header">
+					<a class="navbar-brand" ng-click="backButton()" style="cursor:pointer;color:#fff;font-size:18px;font-weight:bold;">
+							<div class="sync-label"><i class="fas fa-arrow-left" style="font-size:16px;"></i>&nbsp;&nbsp;&nbsp;Live Chat</div>
+					</a>
+				</div>
+			</div>
+		</nav>
+</div>
+		
+		
+		
+		
+<div class="col-md-12" style="display:inline-block;margin-top: 48px;width:100%;">
+	 <div class="checkAll" style="padding:10px;background-color:#eee;">
+		 <a class="btn btn-primary btn-sm" href="https://m.me/339114566624457">
+				<i class="fab fa-facebook-messenger" style="font-size:16px;"></i> Message us on Facebook
+		 </a>					 
+	 </div>
+</div>
+
+<div ng-show="!myPage.displaySpinner" class="col-md-12 column" style="padding:0;margin-top:51px;">
+<ul class="list-group" style="margin-bottom:0;">
+		<li class="list-group-item" style="padding:12px;margin-bottom:0;border:0;border-bottom:1px solid #ddd;" ng-repeat="item in myPage.chatDates">		
+			
+				<table style="white-space:nowrap;overflow:hidden;width:100%;">
+					<tr>
+					 <td style="font-weight: bold;">
+					 	 <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;width:{{myPage.dbnameWidth}}px;max-width:100%;font-size:15px;">
+								{{item.name}} <br />
+								<font style="font-size:13px;font-weight:normal;">{{item.descr}}</font>
+								<br />
+								<font style="font-size:13px;font-weight:normal;">{{item.StartDate}} - {{item.EndDate}}</font>
+						 </span>
+						 <!--badge style="background:red;color:#fff;float:right;padding:4px;border-radius:4px;font-size:12px;">Live</badge-->
+					 </td>
+				   </tr>
+				</table>
+		</li>
+		<li class="list-group-item" style="border-radius:0px;font-size:13px;border:0;padding: 10px 10px;"><span>&nbsp;</span></li>
+		<li ng-if="myPage.entries.length==0" class="list-group-item" style="border-radius:0px;font-size:15px;font-weight:bold;border:0;padding: 10px 14px;"><span>No records found.</span></li>
+</ul>
+</div>
+
+<!---- Spinner / Loader     ---->
+
+<center id="loading" ng-show="myPage.displaySpinner" style="margin-top:140px;">
+		<div>
+				<div class="loader"></div>	
+				<strong>Loading...</strong>
+		</div>
+</center>

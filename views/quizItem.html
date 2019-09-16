@@ -1,0 +1,72 @@
+<div class="col-md-12 column">
+		<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background-color:#FFC107;border-color:#FFC107;">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="container" style="margin-left:0px;">
+				<div class="navbar-header">
+					<a class="navbar-brand" ng-click="backButton()" style="cursor:pointer;color:#fff;font-size:18px;font-weight:bold;">
+							<div class="sync-label" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;"><i class="fas fa-arrow-left" style="font-size:16px;"></i>&nbsp;&nbsp;&nbsp;Quiz - {{getTimeStamp()}}</div>
+					</a>
+				</div>
+			</div>
+		</nav>
+</div>
+
+<div class="col-md-12" style="display:inline-block;margin-top: 48px;width:100%;">
+	 <div class="checkAll" style="padding:10px 0 0 15px;background-color:#eee;">
+		 <label style="margin-right:15px;font-weight:bold;font-size:15px;color:red;">Have Fun !!</label>		
+		 <button id="checkQuiz" class="btn btn-primary btn-xs tqGradeAll pull-right" style="font-size:15px;font-weight:bold;margin:0 10px 3px 0"><i class="fa fa-check" aria-hidden="true" style="color:#1bdc1b;padding-right:0.2em;"></i>Grade Quiz</button>
+		 <button id="newQuiz" class="btn btn-primary btn-xs pull-right" ng-click="reload()" style="display:none;font-size:15px;font-weight:bold;margin:0 10px 3px 0;"><i class="fas fa-sync-alt" aria-hidden="true" style="color:#1bdc1b;padding-right:0.2em;"></i> New Quiz</button>
+	 </div>
+</div>
+
+<div ng-show="myPage.showResultsSuccess" class="col-sm-12 column" style="margin-top:57px;">
+			<div class="alert alert-success" style="margin:0;font-weight:800;">
+				<h4><i class="far fa-check-circle"></i><strong> Congratulation you succeed the Quiz</strong></h4>
+				Marks: {{myPage.pointsAccum}}/{{myPage.totalPoints}}
+				<br />Good response(s): {{myPage.correctans}}/{{myPage.totalans}}
+				<br />Not answered question(s): {{myPage.unanswered}}/{{myPage.totalans}}
+			</div>
+</div>
+
+<div ng-show="myPage.showResultsFailure" class="col-sm-12 column" style="margin-top:57px;">
+			<div class="alert alert-warning" style="margin:0;font-weight:800;">
+				<h4><i class="fas fa-exclamation-triangle"></i><strong> Sorry you failed the Quiz :-( </strong></h4>
+				Marks: {{myPage.pointsAccum}}/{{myPage.totalPoints}}
+				<br />Good response(s): {{myPage.correctans}}/{{myPage.totalans}}
+				<br />Not answered question(s): {{myPage.unanswered}}/{{myPage.totalans}}
+			</div>
+</div>		
+
+<div ng-show="!myPage.displaySpinner" class="col-md-12 column" style="padding:0;">
+		<form id="currentFrm" name="currentFrm"  style="margin-top:57px;margin-bottom:4px;">
+				<ANY ng-repeat="item in myPage.QstItems">
+						<div class="form-group col-sm-12">						
+							<label ng-bind-html=item.Question></label>
+							<div class="form-group col-sm-12 tqQuestion" style="padding:0 0 0 15px;font-weight:600;" data-thisid={{$index}} data-position={{$index}} data-tqtype="mchoice" data-qpoints="1" data-correct={{item.correct}}>
+							
+								<ANY ng-repeat="elt in item.data">
+										<div class="answEntry">
+											<i id="correct_{{$parent.$index}}_{{$index}}" class="fa fa-check" aria-hidden="true" style="display:none;color:#1bdc1b;padding-top:5px;"></i>
+											<i id="wrong_{{$parent.$index}}_{{$index}}" class="fa fa-times" aria-hidden="true" style="display:none;color:red;padding-top:5px;"></i>
+											<input id="tqMC_{{$parent.$index}}_{{$index}}" name="tqMC_{{$parent.$index}}" type="radio"></div><div class="answLabel"> {{elt["0"]}}
+										</div>
+								</ANY>
+								<div class="answEntry tqFeedbackNoAnswer_{{$index}}" style="display:none;color:rgb(240, 173, 78);">
+									<i class="fas fa-exclamation-triangle"></i> Not answered question
+								</div>
+								<!-- id={{elt["@attributes"].id}} -->
+							 </div>
+						</div>
+				</ANY>
+				<div class="form-group col-sm-12" style="height:40px;margin: 0;">&nbsp;</div>
+		</form>
+</div>
+
+<!---- Spinner / Loader     ---->
+
+<center id="loading" ng-show="myPage.displaySpinner" style="margin-top:140px;">
+		<div>
+				<div class="loader"></div>	
+				<strong>Loading...</strong>
+		</div>
+</center>

@@ -1,0 +1,65 @@
+<div class="col-md-12 column">
+		<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" style="background-color:#fd7e14;border-color:#fd7e14;">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="container" style="margin-left:0px;">
+				<div class="navbar-header">
+					<a class="navbar-brand" ng-click="backButton()" style="cursor:pointer;color:#fff;font-size:18px;font-weight:bold;">
+							<!-- div class="sync-label"><i class="fas fa-arrow-left" style="font-size:16px;"></i>&nbsp;&nbsp;&nbsp;{{knowledgeCornerCategory}}</div -->
+							<div class="sync-label" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;width:{{myPage.dbnameWidth}}px;"><i class="fas fa-arrow-left" style="font-size:16px;"></i>&nbsp;&nbsp;&nbsp;{{knowledgeCornerCategory}}</div>
+					</a>
+				</div>
+			</div>
+		</nav>
+</div>
+		
+		
+		
+		
+<div class="col-md-12" style="display:inline-block;margin-top: 48px;width:100%;">
+	 <div class="checkAll" style="padding:10px;background-color:#eee;">
+		 <label ng-if="myPage.CatItems[0].src=='y'" style="margin-right:15px;font-weight:bold;font-size:15px;" class="btn btn-primary btn-xs"> Youtube - {{myPage.CatItems.length}} videos</label>
+		 <label ng-if="myPage.CatItems[0].src=='n'" style="margin-right:15px;font-weight:bold;font-size:15px;" class="btn btn-primary btn-xs"> Resource - {{myPage.CatItems.length}} item</label>		 
+	 </div>
+</div>
+<!--div class="col-md-12 column simpleMargin" style="padding:0;"-->
+<div ng-show="!myPage.displaySpinner" class="col-md-12 column" style="padding:0;margin-top:51px;">
+<ul class="list-group" style="margin-bottom:0;">
+		<li class="list-group-item" ng-repeat="item in myPage.CatItems" style="padding:14px 14px;margin-bottom:0;border:0;border-bottom:1px solid #ddd;cursor:pointer;" >
+			<!--a ng-if="item.src=='y'" ng-href="https://youtube.com/watch?v={{item.lnk_ref}}" target="_blank"-->
+					<table ng-if="item.src=='y'" style="white-space:nowrap;overflow:hidden;width:100%;font-weight: bold;">
+						<tr class="clickable-row" data-href="https://youtube.com/watch?v={{item.lnk_ref}}">
+						 <td>
+							<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;font-size:15px;width:{{myPage.dbnameWidth}}px;max-width:100%;">
+								{{item.title}} <span class="pull-right" style="font-weight: bolder;"></span>
+							</span>
+						</td>
+						<td><i class="far fa-play-circle" style="font-size:25px;"></i></td>
+					  </tr>
+				  </table>
+			<!--/a>
+			<a ng-if="item.src=='n'" ng-href={{item.lnk_ref}} target="_blank" -->
+					<table  ng-if="item.src=='n'" style="white-space:nowrap;overflow:hidden;width:100%;font-weight: bold;">
+						<tr class="clickable-row" data-href={{item.lnk_ref}}>
+						 <td>
+							<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;font-size:15px;width:{{myPage.dbnameWidth}}px;max-width:100%;">
+								{{item.title}} <span class="pull-right" style="font-weight: bolder;"></span>
+							</span>
+						</td>
+						<td>
+							  <i class="fas fa-angle-right" style="font-size:25px;"></i>
+						</td>
+					  </tr>
+				  </table>
+			</a>			
+		</li>
+</ul>
+</div>
+
+<!---- Spinner / Loader     ---->
+
+<center id="loading" ng-show="myPage.displaySpinner" style="margin-top:140px;">
+		<div>
+				<div class="loader"></div>	
+				<strong>Loading...</strong>
+		</div>
+</center>
